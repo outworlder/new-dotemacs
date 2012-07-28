@@ -5,4 +5,5 @@
 
 (dotemacs-load-children '("general"
 			  "lisp"
-			  "theme"))
+			  "theme"
+			  "power-line"))
