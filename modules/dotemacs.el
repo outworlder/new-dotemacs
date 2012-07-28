@@ -2,6 +2,15 @@
 
 (require 'cl)
 
+(defun dotemacs-setup (directory)
+					; Setting up the load paths
+  (setq dotemacs-base directory)
+  (add-to-list 'load-path (concat directory "modules") t)
+  (add-to-list 'load-path (concat directory "support") t)
+  (add-to-list 'custom-theme-load-path (concat directory "themes") t)
+  ;; Telling Emacs to keep stinky customizations out of our beautiful .emacs!
+  (setq custom-file (concat directory "modules/custom.el")))
+
 (defmacro maybe-require (package &rest body)
   "Tries to load the specified package. If it succeeds, then body is executed (if provided)."
   (if body
@@ -43,3 +52,5 @@
     (toggle-read-only t))
   (if (featurep 'todochiku)
       (add-hook 'after-init-hook 'dotemacs-todochiku-notify)))
+
+(dotemacs-load-children '("custom"))
