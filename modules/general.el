@@ -11,3 +11,6 @@
 
 ;; Enter will autoindent
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
+;;; Enabling the server
+(server-start)
