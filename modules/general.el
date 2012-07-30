@@ -5,6 +5,8 @@
 (require 'ido)
 (ido-everywhere 1)
 (ido-mode)
+;;; Enabling 'fuzzy' completion.
+(setq ido-enable-flex-matching t)
 
 ; Disabling the annoying 'whatever is a <whatever>-controlled file. Follow link?'
 (setq vc-follow-symlinks t)
