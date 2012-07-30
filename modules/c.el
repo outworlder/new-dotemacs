@@ -1,9 +1,11 @@
-(require 'cc-mode)
-(require 'cc-styles)
+(autoload 'c++-mode  "cc-mode" "C++ Editing Mode" t)
+(autoload 'c-mode    "cc-mode" "C Editing Mode" t)
+(autoload 'objc-mode "cc-mode" "Objective-C Editing Mode" t)
+(autoload 'java-mode "cc-mode" "Java Editing Mode" t)
+
 
 ;;; Automatic newline after {, } and ;
 (setq c-auto-newline t)
-
 
 ;;-----------------------------------------------------------------------------
 ;; Setting the C style
@@ -28,5 +30,5 @@
 
 ;;; Toggling between source and header files
 (add-hook 'c-mode-common-hook
-	   (lambda() 
+	   (lambda()
 	     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
