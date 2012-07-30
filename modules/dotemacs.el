@@ -12,7 +12,7 @@
   (setq custom-file (concat directory "modules/custom.el"))
   (load-file custom-file))
 
-(defmacro maybe-require (package &rest body)
+(defmacro dotemacs-maybe-require (package &rest body)
   "Tries to load the specified package. If it succeeds, then body is executed (if provided)."
   (if body
       `(progn
@@ -22,8 +22,8 @@
 	       ,@body)))
     `(require ,package nil t)))
 
-(maybe-require 'todochiku)
-(maybe-require 'auto-install
+(dotemacs-maybe-require 'todochiku)
+(dotemacs-maybe-require 'auto-install
     (setq auto-install-directory "~/.emacs.children/support/auto-install/"))
 	       
 (defun dotemacs-display-status (status)
@@ -56,3 +56,15 @@
 
 (defun dotemacs-add-support (directory)
     (add-to-list 'load-path (concat dotemacs-base "support/" directory)))
+
+;;; TODO: We are autocompiling Emacs. Let's autocompile everything!
+(defun dotemacs-autocompile nil
+  "compile itself if ~/.emacs"
+  (interactive)
+  (require 'bytecomp)
+  (let ((dotemacs (expand-file-name "~/.emacs")))
+    (if (string= (buffer-file-name) (file-chase-links dotemacs))
+      (byte-compile-file dotemacs)
+      (byte-recompile-directory dotemacs-base 0 nil))))
+
+(add-hook 'after-save-hook 'dotemacs-autocompile)
