@@ -53,3 +53,6 @@
     (toggle-read-only t))
   (if (featurep 'todochiku)
       (add-hook 'after-init-hook 'dotemacs-todochiku-notify)))
+
+(defun dotemacs-add-support (directory)
+    (add-to-list 'load-path (concat dotemacs-base "support/" directory)))
