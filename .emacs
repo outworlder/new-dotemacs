@@ -7,4 +7,5 @@
 			  "theme"
 			  "lisp"
 			  "c"
+			  "magit"
 			  "power-line"))
