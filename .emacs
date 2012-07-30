@@ -4,6 +4,7 @@
 (dotemacs-setup "~/Documents/Projects/Guilda/new-dotemacs/")
 
 (dotemacs-load-children '("general"
-			  "lisp"
 			  "theme"
+			  "lisp"
+			  "c"
 			  "power-line"))
