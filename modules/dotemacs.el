@@ -3,8 +3,8 @@
 (defun dotemacs-setup (directory)
 					; Setting up the load paths
   (setq dotemacs-base directory)
-  (add-to-list 'load-path (concat directory "modules"))
   (add-to-list 'load-path (concat directory "support"))
+  (add-to-list 'load-path (concat directory "modules"))
   (add-to-list 'custom-theme-load-path (concat directory "themes"))
   ;; Telling Emacs to keep stinky customizations out of our beautiful .emacs!
   (setq custom-file (concat directory "modules/custom.el"))
@@ -38,7 +38,7 @@
 
 (defun dotemacs-load-children (dotemacs-children-list)
   (with-current-buffer (get-buffer-create "*Dotemacs Status*")
-    (toggle-read-only -1)
+    (setq buffer-read-only nil)
     (insert "Dotemacs package load status: \n\n")
     (mapc (lambda(x)
 	    (condition-case err-message
@@ -48,12 +48,16 @@
 	      (error (progn
 		      (insert (format "[%s] Unable to load file: %s - %s\n" (dotemacs-display-status nil) x err-message))
 		      (setq dotemacs-loaded-ok nil))))) dotemacs-children-list)
-    (toggle-read-only t))
+    (setq buffer-read-only t))
   (if (featurep 'todochiku)
       (add-hook 'after-init-hook 'dotemacs-todochiku-notify)))
 
 (defun dotemacs-add-support (directory)
     (add-to-list 'load-path (concat dotemacs-base "support/" directory)))
+
+(defun dotemacs-recompile ()
+  (interactive)
+  (byte-recompile-directory dotemacs-base 0 nil))
 
 ;;; TODO: We are autocompiling Emacs. Let's autocompile everything!
 (defun dotemacs-autocompile nil
@@ -64,7 +68,9 @@
     (if (string= (buffer-file-name) (file-chase-links dotemacs))
 	(progn
 	  (byte-compile-file dotemacs)
-	  (byte-recompile-directory dotemacs-base 0 nil)))))
+	  (dotemacs-recompile)))
+    (if (string-prefix-p (expand-file-name dotemacs-base) (buffer-file-name))
+	(dotemacs-recompile))))
 
 (add-hook 'after-save-hook 'dotemacs-autocompile)
 
