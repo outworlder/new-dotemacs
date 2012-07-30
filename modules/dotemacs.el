@@ -1,5 +1,3 @@
-(provide 'dotemacs)
-
 (require 'cl)
 
 (defun dotemacs-setup (directory)
@@ -64,7 +62,10 @@
   (require 'bytecomp)
   (let ((dotemacs (expand-file-name "~/.emacs")))
     (if (string= (buffer-file-name) (file-chase-links dotemacs))
-      (byte-compile-file dotemacs)
-      (byte-recompile-directory dotemacs-base 0 nil))))
+	(progn
+	  (byte-compile-file dotemacs)
+	  (byte-recompile-directory dotemacs-base 0 nil)))))
 
 (add-hook 'after-save-hook 'dotemacs-autocompile)
+
+(provide 'dotemacs)
