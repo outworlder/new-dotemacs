@@ -1,8 +1,7 @@
 ; Loading the awesome module system
-; TODO: Also, this stinks. Figure out a way to deal with these directories.
-;;; AFAIK, there is no way to get the current directory. We could always place dotemacs on .emacs.d
-(load-library "/Users/stephen/Documents/Projects/Guilda/new-dotemacs/modules/dotemacs.el")
-(dotemacs-setup "~/Documents/Projects/Guilda/new-dotemacs/")
+;;; TODO: load is not working here, load-file is. Figure out why.
+(load-file "/Users/stephen/Documents/Projects/Guilda/new-dotemacs/modules/dotemacs.el")
+(dotemacs-setup)
 
 (dotemacs-load-children '("general"
 			  "theme"
