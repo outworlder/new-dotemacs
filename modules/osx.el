@@ -1,7 +1,12 @@
 (when (equal system-type 'darwin)
-  (setenv "PATH" (concat "/opt/local/bin:/usr/local/bin" (getenv "PATH")))
+  ;; read in PATH from .bashrc
+  (if (not (getenv "TERM_PROGRAM"))
+      (setenv "PATH"
+	      (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+  (setenv "PATH" (concat "/opt/local/bin:/usr/local/bin:" (getenv "PATH")))
   (push "/opt/local/bin" exec-path)
   (push "/usr/local/bin" exec-path)
+  (push "/usr/bin" exec-path)
   (setq st-smaller-font "Calibri-14")
   (setq st-default-font "Inconsolata-16")
 
