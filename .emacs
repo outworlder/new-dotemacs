@@ -3,12 +3,13 @@
 (load-file "/Users/stephen/Documents/Projects/Guilda/new-dotemacs/modules/dotemacs.el")
 (dotemacs-setup)
 
-(dotemacs-load-children '("osx"
-			  "general"
+(dotemacs-load-children '("general"
 			  "theme"
 			  "lisp"
 			  "c"
 			  "magit"
 			  "power-line"
-			  "textmate"))
+			  "textmate"
+			  "coffee"
+			  "osx"))
 
