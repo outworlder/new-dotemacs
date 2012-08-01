@@ -1,3 +1,3 @@
-(add-to-list 'custom-theme-load-path (concat dotemacs-base "themes/emacs-color-theme-solarized"))
+(dotemacs-add-theme "emacs-color-theme-solarized")
 
-(load-theme 'solarized-light)
+(load-theme 'tomorrow-night)

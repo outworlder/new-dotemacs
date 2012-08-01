@@ -1,18 +1,5 @@
 (require 'cl)
 
-;;; http://stackoverflow.com/questions/9947034/emacs-define-a-function-which-loads-the-file-where-the-function-itself-is-defin
-(defun dotemacs-setup ()
-  (let ((dir (file-name-directory #$)))
-    
-					; Setting up the load paths
-    (setq dotemacs-base (concat dir (file-name-as-directory "..")))
-    (add-to-list 'load-path (concat dotemacs-base (file-name-as-directory "support")) t)
-					;(add-to-list 'load-path (concat dir "modules"))
-    (add-to-list 'custom-theme-load-path (concat dotemacs-base (file-name-as-directory "themes")))
-    ;; Telling Emacs to keep stinky customizations out of our beautiful .emacs!
-    (setq custom-file (concat dotemacs-base (file-name-as-directory "modules") "custom.el"))
-    (load-file custom-file)))
-
 (defmacro dotemacs-maybe-require (package &rest body)
   "Tries to load the specified package. If it succeeds, then body is executed (if provided)."
   (if body
@@ -56,7 +43,10 @@
       (add-hook 'after-init-hook 'dotemacs-todochiku-notify)))
 
 (defun dotemacs-add-support (directory)
-    (add-to-list 'load-path (concat dotemacs-base "support/" directory)))
+  (add-to-list 'load-path (concat (file-name-as-directory dotemacs-base) (file-name-as-directory "support") (file-name-as-directory directory))))
+
+(defun dotemacs-add-theme (directory)
+  (add-to-list 'custom-theme-load-path (concat (file-name-as-directory dotemacs-base) (file-name-as-directory "themes") (file-name-as-directory directory))))
 
 (defun dotemacs-recompile ()
   (interactive)
@@ -75,6 +65,18 @@
     (if (string-prefix-p (expand-file-name dotemacs-base) (buffer-file-name))
 	(dotemacs-recompile))))
 
-(add-hook 'after-save-hook 'dotemacs-autocompile)
+;;; http://stackoverflow.com/questions/9947034/emacs-define-a-function-which-loads-the-file-where-the-function-itself-is-defin
+(defun dotemacs-setup ()
+  (let ((dir (file-name-directory #$)))
+    
+					; Setting up the load paths
+    (setq dotemacs-base (concat dir (file-name-as-directory "..")))
+    (add-to-list 'load-path (concat dotemacs-base (file-name-as-directory "support")) t)
+					;(add-to-list 'load-path (concat dir "modules"))
+    (add-to-list 'custom-theme-load-path (concat (file-name-as-directory dotemacs-base) (file-name-as-directory "themes")))
+    ;; Telling Emacs to keep stinky customizations out of our beautiful .emacs!
+    (setq custom-file (concat dotemacs-base (file-name-as-directory "modules") "custom.el"))
+    (load-file custom-file)
+    (add-hook 'after-save-hook 'dotemacs-autocompile)))
 
 (provide 'dotemacs)
