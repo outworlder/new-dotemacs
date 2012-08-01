@@ -3,7 +3,8 @@
 (load-file "/Users/stephen/Documents/Projects/Guilda/new-dotemacs/modules/dotemacs.el")
 (dotemacs-setup)
 
-(dotemacs-load-children '("general"
+(dotemacs-load-children '("osx"
+			  "general"
 			  "theme"
 			  "lisp"
 			  "c"
