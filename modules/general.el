@@ -17,6 +17,7 @@
 ;;; Enabling the server
 (server-start)
 
+;;; Highlighting the current line
 (hl-line-mode 1)
 
 (global-set-key [(tab)] 'smart-tab)
