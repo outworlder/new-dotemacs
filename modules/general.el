@@ -38,3 +38,15 @@
         (indent-for-tab-command)))))
 
 (global-set-key (kbd "<f5>") 'compile)
+
+;; Spaces instead of tabs
+(setq-default indent-tabs-mode t)
+
+;; Paren matching
+(show-paren-mode t)
+
+;; Making Emacs scroll a buffer one line at a time, instead of half-screen
+(setq scroll-step 1)
+(setq scroll-conservatively 5)
+
+(column-number-mode t)
