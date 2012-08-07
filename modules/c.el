@@ -7,6 +7,9 @@
 ;;; Automatic newline after {, } and ;
 (setq c-auto-newline t)
 
+;;; Using C++-mode for headers by default
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
 ;;-----------------------------------------------------------------------------
 ;; Setting the C style
 ;;-----------------------------------------------------------------------------
