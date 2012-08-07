@@ -11,5 +11,6 @@
 			  "power-line"
 			  "textmate"
 			  "coffee"
-			  "osx"))
+			  "osx"
+			  "semantic"))
 
