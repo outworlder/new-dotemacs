@@ -20,6 +20,10 @@
 ;;; Highlighting the current line
 (global-hl-line-mode 1)
 
+;;; Showing line numbers. This requires ELPA (which is now built-in)
+(dotemacs-maybe-require 'nlinum
+			(global-linum-mode 1))
+
 (global-set-key [(tab)] 'smart-tab)
 (defun smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
