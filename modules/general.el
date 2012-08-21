@@ -54,3 +54,5 @@
 (setq scroll-conservatively 5)
 
 (column-number-mode t)
+
+(add-hook 'after-save-hook 'delete-trailing-whitespace)
