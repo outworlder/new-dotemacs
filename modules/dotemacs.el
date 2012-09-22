@@ -12,8 +12,8 @@
 
 (dotemacs-maybe-require 'todochiku)
 (dotemacs-maybe-require 'auto-install
-    (setq auto-install-directory "~/.emacs.children/support/auto-install/"))
-	       
+    (setq auto-install-directory "~/.emacs.modules/support/auto-install/"))
+
 (defun dotemacs-display-status (status)
   (if status
     (propertize "OK" 'face "flymake-warnline")
@@ -26,7 +26,7 @@
     (todochiku-message "Dotemacs status" "All packages loaded successfully." (todochiku-icon 'package))
     (todochiku-message "Dotemacs status" "Error loading some packages. Check the *Dotemacs status* buffer for more info." (todochiku-icon 'alert))))
 
-(defun dotemacs-load-children (dotemacs-children-list)
+(defun dotemacs-load-modules (dotemacs-modules-list)
   (with-current-buffer (get-buffer-create "*Dotemacs Status*")
     (setq buffer-read-only nil)
     (insert "Dotemacs package load status: \n\n")
@@ -37,7 +37,7 @@
 		  (insert (format "[%s] Finished loading file: %s\n" (dotemacs-display-status t) x)))
 	      (error (progn
 		      (insert (format "[%s] Unable to load file: %s - %s\n" (dotemacs-display-status nil) x err-message))
-		      (setq dotemacs-loaded-ok nil))))) dotemacs-children-list)
+		      (setq dotemacs-loaded-ok nil))))) dotemacs-modules-list)
     (setq buffer-read-only t))
   (if (featurep 'todochiku)
       (add-hook 'after-init-hook 'dotemacs-todochiku-notify)))
@@ -68,7 +68,7 @@
 ;;; http://stackoverflow.com/questions/9947034/emacs-define-a-function-which-loads-the-file-where-the-function-itself-is-defin
 (defun dotemacs-setup ()
   (let ((dir (file-name-directory #$)))
-    
+
 					; Setting up the load paths
     (setq dotemacs-base (concat dir (file-name-as-directory "..")))
     (add-to-list 'load-path (concat dotemacs-base (file-name-as-directory "support")) t)
