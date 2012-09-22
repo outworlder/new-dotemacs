@@ -13,5 +13,6 @@
 			 "coffee"
 			 "ruby"
 			 "osx"
+			 "lua"
 			 "markdown"
 			 "semantic"))
