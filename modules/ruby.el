@@ -1,4 +1,5 @@
-(require 'inf-ruby)
+;(require 'inf-ruby)
+(require 'ruby-mode)
 (require 'rvm)
 
 (defun ruby-insert-end ()
@@ -17,18 +18,18 @@
         (message "Warning: There's a debugger statement in the code."))))
 
 ;; Invoke ruby with '-c' to get syntax checking
-(defun flymake-ruby-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-	 (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list "ruby" (list "-c" local-file))))
+;; (defun flymake-ruby-init ()
+;;   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-inplace))
+;; 	 (local-file  (file-relative-name
+;;                        temp-file
+;;                        (file-name-directory buffer-file-name))))
+;;     (list "ruby" (list "-c" local-file))))
 
-(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
+;(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
+;(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
 
-(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
+;(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
 
 (defun ruby-insert-hash-string ()
   "Inserts a #{} but only if inside a string"
@@ -50,6 +51,8 @@
 
 (add-hook 'ruby-mode-hook
           (lambda ()
+	    (require 'ruby-electric)
+	    (ruby-electric-mode t)
 	    (rvm-activate-corresponding-ruby)
 	    (define-key ruby-mode-map "\C-m" 'newline-and-indent)
 	    (inf-ruby-keys)
