@@ -14,15 +14,19 @@
 
 ;;; Slime!
 
-(dotemacs-add-support "slime-2012-07-31")
+;; (dotemacs-add-support "slime-2012-07-31")
 
-(require 'slime)
-(require 'slime-autoloads)
-(slime-setup '(slime-fancy slime-banner))
+;; (require 'slime)
+;; (require 'slime-autoloads)
+;; (slime-setup '(slime-fancy slime-banner))
 
 ;;; Scheme customizations
 
-(autoload 'chicken-slime "chicken-slime" "Swank backend for Chicken" t)
+(dotemacs-add-support "auto-complete-1.3.1")
+
+(require 'chicken-scheme)
+
+;(autoload 'chicken-slime "chicken-slime" "Swank backend for Chicken" t)
 
 ;;; TODO: Check if this is necessary
 
@@ -30,6 +34,3 @@
 	  (lambda ()
 	    (setq slime-csi-path "/usr/local/bin/csi")
 	    (slime-mode t)))
-
-
-
