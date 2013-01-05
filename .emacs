@@ -15,4 +15,5 @@
 			 "osx"
 			 "lua"
 			 "markdown"
-			 "semantic"))
+			 "semantic"
+			 "yasnippet"))
