@@ -2,6 +2,8 @@
 (require 'ruby-mode)
 (require 'rvm)
 
+(dotemacs-maybe-require 'slim-mode)
+
 (defun ruby-insert-end ()
   (interactive)
   (insert "end")
