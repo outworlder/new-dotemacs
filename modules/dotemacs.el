@@ -48,6 +48,10 @@
 (defun dotemacs-add-theme (directory)
   (add-to-list 'custom-theme-load-path (concat (file-name-as-directory dotemacs-base) (file-name-as-directory "themes") (file-name-as-directory directory))))
 
+(defun dotemacs-add-snippet (directory)
+  "Adds a snippet directory so that it will be found by yasnippet."
+  (add-to-list 'yas-snippet-dirs (concat (file-name-as-directory dotemacs-base) (file-name-as-directory "snippets") (file-name-as-directory directory))))
+
 (defun dotemacs-recompile ()
   (interactive)
   (byte-recompile-directory dotemacs-base 0 nil))
