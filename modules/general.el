@@ -20,6 +20,9 @@
 ;;; Highlighting the current line
 (global-hl-line-mode 1)
 
+;;; Auto-reverting files whenever they are changed on disk
+(global-auto-revert-mode 1)
+
 ;;; Showing line numbers. This requires ELPA (which is now built-in)
 (dotemacs-maybe-require 'nlinum
 			(global-linum-mode 1))
