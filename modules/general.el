@@ -64,4 +64,19 @@
 
 (column-number-mode t)
 
+(setq cursor-type 'bar)
+(setq cursor-in-non-selected-windows 'hollow)
+
+(set-default cursor-type 'bar)
+(setq cursor-type 'bar)
+
+(let* ((window (minibuffer-window))
+       (buffer (window-buffer window)))
+  (with-current-buffer buffer
+    (setq cursor-type 'box)))
+
+
 (add-hook 'after-save-hook 'delete-trailing-whitespace)
+
+;; disable bell function
+(setq ring-bell-function 'ignore)
