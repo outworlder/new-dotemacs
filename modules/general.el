@@ -1,6 +1,12 @@
 ; Disabling the toolbar. It serves no purpose.
 (tool-bar-mode 0)
 
+(require 'package)
+(add-to-list 'package-archives 
+	     '("marmalade" .
+	       "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ; Enabling ido-mode
 (require 'ido)
 (ido-everywhere 1)
