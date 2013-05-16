@@ -53,7 +53,7 @@
 (global-set-key (kbd "<f5>") 'compile)
 
 ;; Spaces instead of tabs
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 
 ;; Paren matching
 (show-paren-mode t)
