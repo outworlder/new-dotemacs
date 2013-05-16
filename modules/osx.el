@@ -12,7 +12,7 @@
   (push "/usr/bin" exec-path)
   (push "/usr/local/Cellar/chicken/4.8.0/bin" exec-path)
   (setq st-smaller-font "Calibri-14")
-  (setq st-default-font "Inconsolata-16")
+  (setq st-default-font "Source Code Pro-14")
 
   (set-default-font st-default-font)
   ;; ;; Setting font for new frames
