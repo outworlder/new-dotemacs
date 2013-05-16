@@ -1,0 +1,3 @@
+[submodule "support/nyan-mode"]
+	path = support/nyan-mode
+	url = https://github.com/TeMPOraL/nyan-mode

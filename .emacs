@@ -9,6 +9,7 @@
 			 "c"
 			 "magit"
 			 "power-line"
+                         "nyan"
 			 "textmate"
 			 "coffee"
 			 "ruby"
