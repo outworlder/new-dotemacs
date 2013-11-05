@@ -17,4 +17,5 @@
 			 "lua"
 			 "markdown"
 			 "semantic"
+                         "haskell"
 			 "yasnippet"))
