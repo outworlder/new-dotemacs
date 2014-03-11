@@ -1,6 +1,12 @@
 ; Loading the awesome module system
-;;; TODO: load is not working here, load-file is. Figure out why.
-(load-file "/Users/stephen/Documents/Projects/Guilda/new-dotemacs/modules/dotemacs.el")
+(defvar dotemacs-base-module-dir "./modules/")
+
+(let* ((dotemacs-filename (or load-file-name buffer-file-name))
+       (symlink (file-symlink-p dotemacs-filename))
+       (dotemacs-directory (file-name-directory (or symlink dotemacs-filename))))
+  (load
+   (concat dotemacs-directory dotemacs-base-module-dir "dotemacs.el")))
+
 (dotemacs-setup)
 
 (dotemacs-load-modules '("general"
